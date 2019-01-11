@@ -1,15 +1,15 @@
-/* .adie {
+/* .company{
   background-color: blue;
 } */
 
-.adie__info {
+.company__info {
   width: 75vh;
   height: 8em;
   background-color: yellow;
   border: 2px solid black;
-  padding-bottom: 1.5em;
+  padding: 1.0em;
 }
 
-/* .adie__block {
+/* .company__block {
   background-color: red;
 } */

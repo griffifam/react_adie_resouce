@@ -13,6 +13,7 @@ const Adie = (props) => {
   return (
     <div className="adie">
       <li>
+        <br/>
         <div className="adie__block">
           <div className="adie__info">
             <br/>
@@ -37,7 +38,7 @@ Adie.propTypes = {
   gender:PropTypes.string,
   race:PropTypes.string,
   orientation:PropTypes.string,
-  transplant:PropTypes.bool,
+  transplant:PropTypes.node,
   city:PropTypes.string,
   state:PropTypes.string,
   buttonClassname:PropTypes.string,
