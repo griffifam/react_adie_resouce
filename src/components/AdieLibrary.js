@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Adie from './Adie';
-
 import './AdieLibrary.css';
+
+import PieChart from './PieChart';
 
 class AdieLibrary extends Component {
   constructor(props) {
@@ -28,7 +29,12 @@ class AdieLibrary extends Component {
         adies: response.data,
         adieCount: response.data.length,
       });
-      console.log(this.state.adies);
+      console.log("here is a list of adies",this.state.adies);
+      let allAdieData = [];
+      this.state.adies.map((adie) => {
+        this.allAdieData.push(adie);
+      })
+      console.log("check out this variable list", this.allAdieData);
       this.props.adieCountCallback(`Successfully loaded ${this.state.adieCount} adies`)
     })
     .catch((error) => {
@@ -62,6 +68,9 @@ class AdieLibrary extends Component {
             {allAdies}
           </ol>
         </div>
+        <svg>
+          <PieChart data={this.allAdieData}/>
+        </svg>
       </div>
     )
   }
