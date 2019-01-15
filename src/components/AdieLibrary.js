@@ -24,17 +24,12 @@ class AdieLibrary extends Component {
   getAdies = () => {
     axios.get('http://localhost:8000/adielist/')
     .then((response) => {
-      console.log(response);
+      console.log("this is my response response", response);
       this.setState({
         adies: response.data,
         adieCount: response.data.length,
       });
-      console.log("here is a list of adies",this.state.adies);
-      let allAdieData = [];
-      this.state.adies.map((adie) => {
-        this.allAdieData.push(adie);
-      })
-      console.log("check out this variable list", this.allAdieData);
+      // console.log("here is a list of adies",this.state.adies);
       this.props.adieCountCallback(`Successfully loaded ${this.state.adieCount} adies`)
     })
     .catch((error) => {
@@ -44,8 +39,16 @@ class AdieLibrary extends Component {
 
 
   render() {
-    const allAdies = this.state.adies.map((adie, i) => {
-      console.log(adie);
+    // const pieChart = () => {
+    //   return <PieChart data={this.state.adies} />
+    // };
+
+    let allAdieData = [];
+    this.allAdieData = this.state.adies.slice();
+    // console.log("check it ouuuuuut", this.allAdieData);
+
+    const allAdies =
+    this.state.adies.map((adie, i) => {
       return <Adie
         key={i}
         age={adie.age}
@@ -68,8 +71,8 @@ class AdieLibrary extends Component {
             {allAdies}
           </ol>
         </div>
-        <svg>
-          <PieChart data={this.allAdieData}/>
+        <svg width="500" height="500" fill="green">
+          <PieChart data={this.state.adies} />
         </svg>
       </div>
     )

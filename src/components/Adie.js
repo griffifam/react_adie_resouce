@@ -38,7 +38,7 @@ Adie.propTypes = {
   gender:PropTypes.string,
   race:PropTypes.string,
   orientation:PropTypes.string,
-  transplant:PropTypes.node,
+  transplant:PropTypes.bool,
   city:PropTypes.string,
   state:PropTypes.string,
   buttonClassname:PropTypes.string,

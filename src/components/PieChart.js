@@ -1,41 +1,66 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as d3 from 'd3';
+import Slice from './Slice';
+// import PropTypes from 'prop-types';
 
-class PieChart extends Component {
-  constructor(props) {
-    super(props);
+const data = [10, 30, 10, 30, 40];
 
-    this.state = {
-      data: this.props.data,
-    };
-    console.log("hello world");
-    console.log(this.state.data);
-  }
 
-  componentDidMount() {
+export const SimplePieChart = (props) => {
+  const height = 400;
+  const width = 400;
 
-  }
+  console.log("did I get it", props.data);
 
-  componentDidUpdate() {
+  let pie = d3.pie()(data);
 
-  }
-  render() {
-    return(
-      <div>
-      Lay some words in there~
-      </div>
-    )
-  }
-
-}
-
-PieChart.propTypes = {
-  ages:PropTypes.array,
-  genders:PropTypes.array,
-  orientations:PropTypes.array,
-  locationCities:PropTypes.array,
-  locationStates:PropTypes.array,
+  return(
+    <svg height={height} width={width}>
+    <g transform={`translate(${width / 2},${height / 2})`}>
+    <Slice pie={pie} />
+    </g>
+    </svg>
+  );
 };
+//
+// class PieChart extends Component {
+//   constructor(props) {
+//     super(props);
+//
+//     this.state = {
+//       data: this.props.data,
+//     };
+//
+//     console.log("hello world");
+//     console.log(this.props.data);
+//   }
+//
+//   componentDidMount() {
+//
+//   }
+//
+//   componentDidUpdate() {
+//
+//   }
+//
+//   render() {
+//     return(
+//       <div>
+//       Lay some words in there~
+//       {this.props.data}
+//       </div>
+//     )
+//   }
+//
+// }
+//
+// PieChart.propTypes = {
+//   ages:PropTypes.array,
+//   genders:PropTypes.array,
+//   orientations:PropTypes.array,
+//   locationCities:PropTypes.array,
+//   locationStates:PropTypes.array,
+// };
 
 
-export default PieChart;
+export default SimplePieChart;
