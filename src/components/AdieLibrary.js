@@ -24,28 +24,24 @@ class AdieLibrary extends Component {
   getAdies = () => {
     axios.get('http://localhost:8000/adielist/')
     .then((response) => {
-      console.log("this is my response response", response);
+      // this.adies = response.data;
+      // console.log("did this work", this.adies);
       this.setState({
         adies: response.data,
         adieCount: response.data.length,
       });
-      // console.log("here is a list of adies",this.state.adies);
       this.props.adieCountCallback(`Successfully loaded ${this.state.adieCount} adies`)
+      response.data.map((adie) => {
+        console.log("what is this", adie.age);
+      })
+      // this.props.adieAgePieCallback(response.data.age)
     })
     .catch((error) => {
       this.setState({ error: error.message });
     });
   }
 
-
   render() {
-    // const pieChart = () => {
-    //   return <PieChart data={this.state.adies} />
-    // };
-
-    let allAdieData = [];
-    this.allAdieData = this.state.adies.slice();
-    // console.log("check it ouuuuuut", this.allAdieData);
 
     const allAdies =
     this.state.adies.map((adie, i) => {
@@ -63,7 +59,6 @@ class AdieLibrary extends Component {
 
     });
 
-
     return (
       <div className="adieLibrary">
         <div className="library">
@@ -72,11 +67,37 @@ class AdieLibrary extends Component {
           </ol>
         </div>
         <svg width="500" height="500" fill="green">
-          <PieChart data={this.state.adies} />
+          <PieChart data={getAgeData(this.state.adies)} />
         </svg>
       </div>
     )
   }
+}
+
+function getAgeData(adies) {
+  const data = {
+    "18 - 24": 0,
+    "25 - 32": 0,
+    "33 - 39": 0,
+    "40+": 0
+  }
+
+  adies.forEach(function(adie) {
+    let age = adie.age;
+
+    if (age >= 18 && age <= 24) {
+      data["18 - 24"]++
+    } else if (age >= 25 && age <= 32) {
+      data["25 - 32"]++
+    } else if (age >= 33 && age <= 39) {
+      data["33 - 39"]++
+    } else if (age >= 40) {
+      data["40+"]++
+    }
+  });
+
+  return data;
+
 }
 
 AdieLibrary.propTypes = {

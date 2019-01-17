@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
 import './Offer.css';
@@ -8,7 +8,7 @@ const Offer = (props) => {
 //   const onClickOffer = () => {
 //     props.grabOfferTitleCallback(props.id)
 //   }
-const NumberFormat = require('react-number-format');
+// const NumberFormat = require('react-number-format');
 
   return (
 
@@ -20,7 +20,7 @@ const NumberFormat = require('react-number-format');
             <br/>
             Adie ID: {props.adie_id} <br/>
             Company ID: {props.company_id} <br/>
-            Was negotiations possible? (true/false): {props.negotiations} <br/>
+          Was negotiations possible? (true/false): {props.negotiations ? "Yes" : "No"} <br/>
             Base Amt: <NumberFormat
                 value={ props.base_amount}
                 displayType={'text'}
@@ -49,7 +49,7 @@ Offer.propTypes = {
   id:PropTypes.number,
   adie_id:PropTypes.number,
   company_id:PropTypes.number,
-  negotiations:PropTypes.node,
+  negotiations:PropTypes.bool,
   base_amount:PropTypes.number,
   signing_bonus:PropTypes.number,
   relocation_package:PropTypes.number,

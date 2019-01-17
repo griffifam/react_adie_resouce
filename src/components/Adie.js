@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Adie.css';
 
 const Adie = (props) => {
+  console.log(props);
 //
 //   const onClickAdie = () => {
 //     props.grabAdieTitleCallback(props.id)
@@ -22,7 +23,7 @@ const Adie = (props) => {
             Adie Gender: {props.gender} <br/>
             Adie Sexual Orientation: {props.orientation} <br/>
             Location: {props.location_city}, {props.location_state} <br/>
-            Seattle Transplant? (true/false): {props.transplant}
+          Seattle Transplant? (Yes | No): {props.transplant ? "Yes" : "No"}
           </div>
         </div>
       </li>
