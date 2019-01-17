@@ -191,8 +191,6 @@ class App extends Component {
             Learn React
           </a>
         </header>
-
-        
         <main>
           <div className="nav-item1">
             <Link to="/adies" className="adie">Adie Library</Link>
