@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Adie.css';
 
 const Adie = (props) => {
-  console.log(props);
+  // console.log(props);
 //
 //   const onClickAdie = () => {
 //     props.grabAdieTitleCallback(props.id)

@@ -61,6 +61,9 @@ class OfferLibrary extends Component {
 
     return (
       <div className="offerLibrary">
+        <button onClick={this.handleClick}>Hire Type</button>
+        <button onClick={this.handleClick}>Negotiations</button>
+        <button onClick={this.handleClick}># of Adies</button>
         <div className="library">
           <ol className="allOffers">
             {allOffers}

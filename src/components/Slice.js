@@ -14,19 +14,21 @@ const Slice = props => {
   let interpolate = d3.interpolateRgb("red", "blue");
 
   return pie.map((slice, i) => {
+    console.log(slice);
     let sliceColor = interpolate(i / (pie.length - 1));
+
+    let makeSlice = slice.value ? <text transform={`translate(${arc.centroid(slice)})`}
+        dy=".35em"
+        textAnchor="middle"
+        fill="white">
+
+    {props.label[i]}
+    </text> : <text></text> ;
 
     return (
       <g>
       <path key={i} d={arc(slice)} fill={sliceColor} />
-      <text transform={`translate(${arc.centroid(slice)})`}
-          dy=".35em"
-          textAnchor="middle"
-          fill="white">
-
-      {props.label[i]}
-      
-      </text>
+      {makeSlice}
       </g>
     );
   });
