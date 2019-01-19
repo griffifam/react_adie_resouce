@@ -15,15 +15,19 @@ class PieChart extends React.Component {
     this.state = {
       data: [],
     };
-
   }
-  // export const SimplePieChart = (props) => {
+
+
   render() {
+
+    console.log("what are props", this.props);
+    console.log("whats in props.data", this.props.data);
+
     const height = 500;
     const width = 500;
 
     console.log("Age props", this.props.data);
-    console.log("keys", Object.keys(this.props.data), );
+    console.log("keys", Object.keys(this.props.data));
     console.log("values", Object.values(this.props.data));
 
     let pie = d3.pie()(

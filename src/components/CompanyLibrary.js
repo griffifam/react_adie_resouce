@@ -11,13 +11,7 @@ class CompanyLibrary extends Component {
 
     this.state = {
       companies: [],
-      moreCompanies: '',
       companyCount: 0,
-      companyMicros: [],
-      Companylocations: [],
-      companySizes: [],
-      companyLocations: [],
-      companyIndustry: [],
     };
   }
 
@@ -33,23 +27,7 @@ class CompanyLibrary extends Component {
         companies: response.data,
         companyCount: response.data.length,
       });
-      // console.log(this.state.companies);
-      // console.log(`number of companies = ${this.state.companies}`)
-      // response.data.map((company) => {
-      //   let companySize = company.company_size;
-      //   let orgSize = company.org_size;
-      //   let location = `${company.location_city}, ${company.location_state}`;
-      //   let industry = company.industry;
-      //   let microaggressions = company.level_of_microaggressions;
-      //
-      //   return this.setState({
-      //     companySize: this.state.companySizes.push(companySize),
-      //     orgSize: this.state.org_size.push(orgSize),
-      //     companyLocations: this.state.companyLocations.push(location),
-      //     companyIndustry: this.state.companyIndustry.push(industry),
-      //     companyMicros: this.state.companyMicros.push(microaggressions),
-      //   });
-
+      this.props.grabCompanyCallback(this.state.companies)
       this.props.companyCountCallback(`Successfully loaded ${this.state.companyCount} companies`)
     })
     .catch((error) => {
@@ -77,10 +55,9 @@ class CompanyLibrary extends Component {
 
     return (
       <div className="companyLibrary">
-        <button onClick={this.handleClick}>Micro</button>
-        <button onClick={this.handleClick}>Company Size</button>
-        <button onClick={this.handleClick}>Location</button>
-        <button onClick={this.handleClick}>Industry</button>
+        <button onClick={() => this.props.showGraph("companies", "orgSize")}>Oganization Size</button>
+        <button onClick={() => this.props.showGraph("companies", "location")}>Location</button>
+        <button onClick={() => this.props.showGraph("companies", "industry")}>Industry</button>
         <div className="library">
           <ol className="allCompanies">
             {allCompanies}

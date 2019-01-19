@@ -1,15 +1,16 @@
-/* .adie {
-  background-color: blue;
-} */
+.adie {
+
+}
 
 .adie__info {
-  width: 75vh;
+  width: 71vh;
   height: 8em;
   background-color: yellow;
   border: 2px solid black;
-  padding-bottom: 1.5em;
+  padding-bottom: 1.0em;
 }
 
-/* .adie__block {
-  background-color: red;
-} */
+.adie__block {
+  width: auto;
+  height: auto;
+}
