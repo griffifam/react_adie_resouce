@@ -4,12 +4,6 @@ import PropTypes from 'prop-types';
 import './Adie.css';
 
 const Adie = (props) => {
-  // console.log(props);
-//
-//   const onClickAdie = () => {
-//     props.grabAdieTitleCallback(props.id)
-//   }
-
 
   return (
     <div className="adie">
@@ -30,8 +24,6 @@ const Adie = (props) => {
     </div>
   )
 }
-
-// onClick={() => props.deleteCardCallback(props.id)}
 
 Adie.propTypes = {
   id:PropTypes.number,

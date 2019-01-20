@@ -1,15 +1,16 @@
-/* .company{
-  background-color: blue;
-} */
+.company{
+  /* background-color: blue; */
+}
 
 .company__info {
-  width: 75vh;
+  width: 71vh;
   height: 8em;
   background-color: yellow;
   border: 2px solid black;
-  padding: 1.0em;
+  padding-bottom: 1.0em;
 }
 
-/* .company__block {
-  background-color: red;
-} */
+.company__block {
+  width: auto;
+  height: auto;
+}

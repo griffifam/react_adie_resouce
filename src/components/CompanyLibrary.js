@@ -38,7 +38,7 @@ class CompanyLibrary extends Component {
 
   render() {
     const allCompanies = this.state.companies.map((company, i) => {
-      console.log(company);
+      // console.log(company);
       return <Company
         key={i}
         company_size={company.company_size}

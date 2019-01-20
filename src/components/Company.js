@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 import './Company.css';
 
 const Company = (props) => {
-//
-//   const onClickCompany = () => {
-//     props.grabCompanyTitleCallback(props.id)
-//   }
-
 
   return (
     <div className="company">
@@ -28,8 +23,6 @@ const Company = (props) => {
     </div>
   )
 }
-
-// onClick={() => props.deleteCardCallback(props.id)}
 
 Company.propTypes = {
   id:PropTypes.number,

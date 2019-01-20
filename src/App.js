@@ -57,6 +57,7 @@ class App extends Component {
   showGraph = (newData, newField) => {
 
     if (newData === 'adies') {
+
       if (newField === 'age') {
         const data = {
           "18 - 24": 0,
@@ -189,7 +190,8 @@ class App extends Component {
         })
       }
     } else if (newData === 'companies') {
-      if (newField === 'companySize') {
+
+      if (newField === 'orgSize') {
         const data = {
           "1 - 100": 0,
           "101 - 500": 0,
@@ -244,37 +246,50 @@ class App extends Component {
         this.state.companies.forEach(function(company) {
           let industry = company.industry.toLowerCase();
 
-          if (/internet|software|cloud|software services/.test(industry) ) {
-            data["Internet Software & Services"]++
-          } else if (/software/.test(industry) ) {
-            data["Software"]++
-          } else if (/information|technology/.test(industry) ) {
-            data["Information Technology Services"]++
-          } else if (/electronic|equipment|instruments|hardware|components/.test(industry) ) {
-            data["Electronic Equipment Instruments & Components"]++
-          } else if (/machine learning/.test(industry) ) {
-            data["Machine Learning"]++
-          } else if (/government|social services/.test(industry) ) {
-            data["Government & Social Services"]++
-          } else if (/security/.test(industry) ) {
-            data["Security"]++
-          } else if (/finance/.test(industry) ) {
-            data["Finance"]++
-          } else if (/artificial intelligence/.test(industry) ) {
-            data["Artificial Intelligence"]++
-          } else {
-            data["Other"]++
-          }
+          const labels = [
+            "internet software cloud software services",
+            "software", "information technology",
+            "electronic equipment",
+            "instruments hardware components",
+            "machine learning",
+            "government social services",
+            "security",
+            "finance",
+            "artificial intelligence"
+          ];
+//try to figure out how to regex this into specific categories
+          labels.forEach(function(label) {
+            if ( label.match(industry) ) {
+              data["Internet Software & Services"]++
+            } else if ( label.match(industry) ) {
+              data["Software"]++
+            } else if ( label.match(industry) ) {
+              data["Information Technology Services"]++
+            } else if ( label.match(industry) ) {
+              data["Electronic Equipment Instruments & Components"]++
+            } else if ( label.match(industry) ) {
+              data["Machine Learning"]++
+            } else if ( label.match(industry) ) {
+              data["Government & Social Services"]++
+            } else if ( label.match(industry) ) {
+              data["Security"]++
+            } else if ( label.match(industry) ) {
+              data["Finance"]++
+            } else if ( label.match(industry) ) {
+              data["Artificial Intelligence"]++
+            } else {
+              data["Other"]++
+            }
+          });
         });
       }
+      this.setState({
+        pieDisplay: true,
+      })
     }
-    this.setState({
-      pieDisplay: true,
-    })
   }
 
   render() {
-    console.log("how is this laid out",this.state.companies);
 
     let chartData = this.state.currentChart;
 
@@ -297,15 +312,13 @@ class App extends Component {
             render={ (props) => <AdieLibrary {...props}
             adieCountCallback={this.changeMessage}
             grabAdieCallback={this.listAdies}
-            showGraph={this.showGraph}
-            /> }
+            showGraph={this.showGraph} /> }
             />
           <Route exact path="/companies"
             render={ (props) => <CompanyLibrary {...props}
             companyCountCallback={this.changeMessage}
             grabCompanyCallback={this.listCompanies}
             showGraph={this.showGraph} /> }
-
             />
           <Route exact path="/offers"
             render={ (props) => <OfferLibrary {...props}
