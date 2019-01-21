@@ -37,7 +37,7 @@ class App extends Component {
     // console.log(`List of Adies = ${adieObjects}`);
     this.setState({
       adies: adieObjects,
-      pieDisplay: !this.state.pieDisplay,
+      pieDisplay: false,
     });
   }
 
@@ -45,6 +45,7 @@ class App extends Component {
     // console.log(`List of Companies = ${companyObjects}`);
     this.setState({
       companies: companyObjects,
+      pieDisplay: false,
     });
   }
 
@@ -52,12 +53,13 @@ class App extends Component {
     // console.log(`List of Offers = ${offerObjects}`);
     this.setState({
       offers: offerObjects,
+      pieDisplay: false,
     });
   }
 
   showGraph = (newData, newField) => {
-
     if (newData === 'adies') {
+
       if (newField === 'age') {
         const data = {
           "18 - 24": 0,
@@ -189,6 +191,11 @@ class App extends Component {
           }
         })
       }
+
+      this.setState({
+        pieDisplay: true,
+      })
+
     } else if (newData === 'companies') {
 
       if (newField === 'orgSize') {
@@ -223,15 +230,15 @@ class App extends Component {
         });
       } else if (newField === 'industry') {
         const data = {
-          "Internet Software & Services": 0,
-          "Software": 0,
-          "Information Technology Services": 0,
-          "Electronic Equipment Instruments & Components": 0,
-          "Machine Learning": 0,
-          "Government & Social Services": 0,
-          "Security": 0,
-          "Artificial Intelligence": 0,
-          "Other": 0,
+          "internet software cloud software services": 0,
+          "software": 0,
+          "information technology": 0,
+          "electronic equipment instruments & components": 0,
+          "machine learning": 0,
+          "government & social services": 0,
+          "security": 0,
+          "artificial intelligence": 0,
+          "other": 0
         };
 
         const currentChart = {
@@ -250,8 +257,7 @@ class App extends Component {
             "internet software cloud software services",
             "software",
             "information technology",
-            "electronic equipment",
-            "instruments hardware components",
+            "electronic equipment instruments & components",
             "machine learning",
             "government",
             "security",
@@ -262,25 +268,7 @@ class App extends Component {
 
           labels.forEach(function(label) {
             if ( label.includes(industry) ) {
-              data["Internet Software & Services"]++
-            } else if ( label.includes(industry) ) {
-              data["Software"]++
-            } else if ( label.includes(industry) ) {
-              data["Information Technology Services"]++
-            } else if ( label.includes(industry) ) {
-              data["Electronic Equipment Instruments & Components"]++
-            } else if ( label.includes(industry) ) {
-              data["Machine Learning"]++
-            } else if ( label.includes(industry) ) {
-              data["Government & Social Services"]++
-            } else if ( label.includes(industry) ) {
-              data["Security"]++
-            } else if ( label.includes(industry) ) {
-              data["Finance"]++
-            } else if ( label.includes(industry) ) {
-              data["Artificial Intelligence"]++
-            } else {
-              data["Other"]++
+              data[`${label}`]++
             }
           });
         });
@@ -297,7 +285,7 @@ class App extends Component {
           "Atlanta, Georgia": 0,
           "Boston, Massachussetts": 0,
           "New York, New York": 0,
-          "Other": 0,
+          "Other": 0
         };
 
         const currentChart = {
@@ -310,7 +298,7 @@ class App extends Component {
         })
 
         this.state.companies.forEach(function(company) {
-          const location =  `${company.location_city}`;
+          const location =  `${company.location_city}, ${company.location_state}`;
           const labels = Object.keys(data);
 
           labels.forEach(function(label) {
@@ -336,21 +324,81 @@ class App extends Component {
               data["Boston, Massachussetts"]++
             } else if (label.match(location) ) {
               data["New York, New York"]++
-            } else if (label.match(location) ) {
-              data["1000+"]++
+            } else {
+              data["Other"]++
             }
           })
         });
       }
+
       this.setState({
         pieDisplay: true,
       })
+
+    } else if (newData === 'offers') {
+
+      if (newField === 'hire_type') {
+        const data = {
+          "internal": 0,
+          "external": 0
+        };
+
+        const currentChart = {
+          dataset: data,
+          field: newField,
+        };
+
+        this.setState({
+          currentChart,
+        })
+
+        this.state.offers.forEach(function(offer) {
+          const hireType = offer.hire_type.toLowerCase();
+
+          if (hireType === "internal" ) {
+            data["internal"]++
+          } else {
+            data["external"]++
+          }
+        });
+      } else if (newField === 'negotiations') {
+        const data = {
+          "Yes": 0,
+          "No": 0
+        };
+
+        const currentChart = {
+          dataset: data,
+          field: newField,
+        };
+
+        this.setState({
+          currentChart,
+        })
+
+        this.state.offers.forEach(function(offer) {
+          const negotiation = offer.negotiations;
+
+          if (negotiation === true) {
+            data["Yes"]++
+          } else {
+            data["No"]++
+          }
+        });
+      }
     }
+
+    this.setState({
+      pieDisplay: true,
+    })
+
   }
 
   render() {
 
     let chartData = this.state.currentChart;
+    let offer = this.state.offers[0];
+    console.log("what is the value of negotiations", offer);
 
     return (
 

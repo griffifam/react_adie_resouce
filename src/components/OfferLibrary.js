@@ -28,8 +28,9 @@ class OfferLibrary extends Component {
         offers: response.data,
         offerCount: response.data.length,
       });
-      console.log(this.state.offers);
-      console.log(`number of offers = ${this.state.offers}`)
+      console.log("it pops up here", this.state.offers);
+      console.log(`number of offers = ${this.state.offers.length}`)
+      this.props.grabOfferCallback(this.state.offers)
       this.props.offerCountCallback(`Successfully loaded ${this.state.offerCount} offers`)
     })
     .catch((error) => {
