@@ -61,9 +61,9 @@ class OfferLibrary extends Component {
 
     return (
       <div className="offerLibrary">
-        <button onClick={this.handleClick}>Hire Type</button>
-        <button onClick={this.handleClick}>Negotiations</button>
-        <button onClick={this.handleClick}># of Adies</button>
+        <button onClick={() => this.props.showGraph("offers", "hire_type")}>Hire Type</button>
+        <button onClick={() => this.props.showGraph("offers", "negotiations")}>Negotiations</button>
+        <button onClick={() => this.props.showGraph("offers", "adie_id")}># of Adies</button>
         <div className="library">
           <ol className="allOffers">
             {allOffers}

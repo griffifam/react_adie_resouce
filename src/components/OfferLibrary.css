@@ -1,0 +1,16 @@
+.offerLibrary {
+  border: 1px solid blue;
+}
+
+.library {
+  border: 1px solid black;
+}
+
+.allOffers {
+  margin: 0px;
+  width: 1600px;
+  padding-bottom: 5vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

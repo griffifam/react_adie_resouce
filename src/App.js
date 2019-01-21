@@ -37,6 +37,7 @@ class App extends Component {
     // console.log(`List of Adies = ${adieObjects}`);
     this.setState({
       adies: adieObjects,
+      pieDisplay: !this.state.pieDisplay,
     });
   }
 
@@ -57,7 +58,6 @@ class App extends Component {
   showGraph = (newData, newField) => {
 
     if (newData === 'adies') {
-
       if (newField === 'age') {
         const data = {
           "18 - 24": 0,
@@ -245,42 +245,101 @@ class App extends Component {
 
         this.state.companies.forEach(function(company) {
           let industry = company.industry.toLowerCase();
-
+          // const labels = Object.keys(data);
           const labels = [
             "internet software cloud software services",
-            "software", "information technology",
+            "software",
+            "information technology",
             "electronic equipment",
             "instruments hardware components",
             "machine learning",
-            "government social services",
+            "government",
             "security",
             "finance",
             "artificial intelligence"
           ];
-//try to figure out how to regex this into specific categories
+          //try to figure out how to regex this into specific categories
+
           labels.forEach(function(label) {
-            if ( label.match(industry) ) {
+            if ( label.includes(industry) ) {
               data["Internet Software & Services"]++
-            } else if ( label.match(industry) ) {
+            } else if ( label.includes(industry) ) {
               data["Software"]++
-            } else if ( label.match(industry) ) {
+            } else if ( label.includes(industry) ) {
               data["Information Technology Services"]++
-            } else if ( label.match(industry) ) {
+            } else if ( label.includes(industry) ) {
               data["Electronic Equipment Instruments & Components"]++
-            } else if ( label.match(industry) ) {
+            } else if ( label.includes(industry) ) {
               data["Machine Learning"]++
-            } else if ( label.match(industry) ) {
+            } else if ( label.includes(industry) ) {
               data["Government & Social Services"]++
-            } else if ( label.match(industry) ) {
+            } else if ( label.includes(industry) ) {
               data["Security"]++
-            } else if ( label.match(industry) ) {
+            } else if ( label.includes(industry) ) {
               data["Finance"]++
-            } else if ( label.match(industry) ) {
+            } else if ( label.includes(industry) ) {
               data["Artificial Intelligence"]++
             } else {
               data["Other"]++
             }
           });
+        });
+      } else if (newField === 'location') {
+        const data = {
+          "Seattle, Washington": 0,
+          "Redmond, Washington": 0,
+          "Kirkland, Washington": 0,
+          "San Francisco, California": 0,
+          "San Jose, California": 0,
+          "Austin, Texas": 0,
+          "Denver, Colorado": 0,
+          "Chicago, Illinois": 0,
+          "Atlanta, Georgia": 0,
+          "Boston, Massachussetts": 0,
+          "New York, New York": 0,
+          "Other": 0,
+        };
+
+        const currentChart = {
+          dataset: data,
+          field: newField,
+        };
+
+        this.setState({
+          currentChart,
+        })
+
+        this.state.companies.forEach(function(company) {
+          const location =  `${company.location_city}`;
+          const labels = Object.keys(data);
+
+          labels.forEach(function(label) {
+            if (label.match(location) ){
+              data["Seattle, Washington"]++
+            } else if (label.match(location) ) {
+              data["Redmond, Washington"]++
+            } else if (label.match(location) ) {
+              data["Kirkland, Washington"]++
+            } else if (label.match(location) ) {
+              data["San Francisco, California"]++
+            } else if (label.match(location) ) {
+              data["San Jose, California"]++
+            } else if (label.match(location) ) {
+              data["Austin, Texas"]++
+            } else if (label.match(location) ) {
+              data["Denver, Colorado"]++
+            } else if (label.match(location) ) {
+              data["Chicago, Illinois"]++
+            } else if (label.match(location) ) {
+              data["Atlanta, Georgia"]++
+            } else if (label.match(location) ) {
+              data["Boston, Massachussetts"]++
+            } else if (label.match(location) ) {
+              data["New York, New York"]++
+            } else if (label.match(location) ) {
+              data["1000+"]++
+            }
+          })
         });
       }
       this.setState({
