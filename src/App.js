@@ -385,13 +385,32 @@ class App extends Component {
             data["No"]++
           }
         });
+      } else if (newField === "adie_id") {
+        const data = {};
+        let counter = 0;
+
+        this.state.offers.forEach(function(offer) {
+          const adie = offer.adie_id
+          if (adie > 0) {
+            counter ++
+            data[`${adie}`] = counter
+          }
+        });
+
+        const currentChart = {
+          dataset: data,
+          field: newField,
+        };
+
+        this.setState({
+          currentChart,
+        })
       }
+
+      this.setState({
+        pieDisplay: true,
+      })
     }
-
-    this.setState({
-      pieDisplay: true,
-    })
-
   }
 
   render() {
