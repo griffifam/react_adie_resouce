@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "bootstrap-css-only/css/bootstrap.min.css";
+import "mdbreact/dist/css/mdb.css";
+
 import './App.css';
 
 import AdieLibrary from './components/AdieLibrary.js';
 import CompanyLibrary from './components/CompanyLibrary.js';
 import OfferLibrary from './components/OfferLibrary.js';
 import PieChart from './components/PieChart.js';
+import NewForm from './components/NewForm.js';
 // import StatusBar from './components/StatusBar.js';
 
 
@@ -413,11 +418,29 @@ class App extends Component {
     }
   }
 
+  getNewFormData = (adie, company, offer) => {
+    console.log("new adie is", adie);
+    console.log("new company is", company);
+    console.log("new offer is", offer)
+    let allAdies = this.state.adies;
+    allAdies = allAdies.push(adie);
+
+    let allCompanies = this.state.companies;
+    allCompanies = allCompanies.push(company);
+
+    let allOffers = this.state.offers;
+    allOffers = allOffers.push(offer);
+
+    this.setState({
+      adies: allAdies,
+      companies: allCompanies,
+      offers: allOffers,
+    })
+  }
+
   render() {
 
     let chartData = this.state.currentChart;
-    let offer = this.state.offers[0];
-    console.log("what is the value of negotiations", offer);
 
     return (
 
@@ -432,7 +455,11 @@ class App extends Component {
           <div className="nav-item3">
             <Link to="/offers" className="offer">Offer Library</Link>
           </div>
+          <div className="nav-item4">
+            <Link to="/new" className="newform">New Data Form</Link>
+          </div>
         </header>
+
         <div className="components-body">
           <Route exact path="/adies"
             render={ (props) => <AdieLibrary {...props}
@@ -451,6 +478,9 @@ class App extends Component {
             offerCountCallback={this.changeMessage}
             grabOfferCallback={this.listOffers}
             showGraph={this.showGraph} /> }
+            />
+          <Route exact path="/new"
+            render={ (props) => <NewForm {...props} newDataCallback={this.getNewFormData} /> }
             />
         </div>
         <div className="pie" style={{display: this.state.pieDisplay ? 'block' : 'none' }}>
