@@ -4,6 +4,8 @@ import axios from 'axios';
 import Adie from './Adie';
 import './AdieLibrary.css';
 
+import { Table, Button } from 'reactstrap';
+
 
 class AdieLibrary extends Component {
   constructor(props) {
@@ -50,26 +52,55 @@ class AdieLibrary extends Component {
 
     return (
       <div className="adieLibrary">
-        <button onClick={() => this.props.showGraph("adies", "age")}>
+        <Button outline color="primary" onClick={() => this.props.showGraph("adies", "age")}>
           Age
-        </button>
-        <button onClick={() => this.props.showGraph("adies", "race")}>
+        </Button>
+        <Button outline color="primary" onClick={() => this.props.showGraph("adies", "race")}>
           Race
-        </button>
-        <button onClick={() => this.props.showGraph("adies", "gender")}>
+        </Button>
+        <Button outline color="primary" onClick={() => this.props.showGraph("adies", "gender")}>
           Gender
-        </button>
-        <button onClick={() => this.props.showGraph("adies", "orientation")}>
+        </Button>
+        <Button outline color="primary" onClick={() => this.props.showGraph("adies", "orientation")}>
           Orientation
-        </button>
+        </Button>
         <div className="library">
-          <ol className="allAdies">
-            {allAdies}
-          </ol>
+          <Table className="adietable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Race</th>
+                <th>Orientation</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Transplant?</th>
+              </tr>
+            </thead>
+            <tbody>
+                {this.state.adies.map((adie, i) => {
+                  let age = adie.age;
+                  let transplant = adie.transplant ? "Yes" : "No";
+
+                  return (
+                    <tr>
+                      <th scope="row">{i}</th>
+                      <td>{age}</td>
+                      <td>{adie.gender}</td>
+                      <td>{adie.race}</td>
+                      <td>{adie.orientation}</td>
+                      <td>{adie.location_city}</td>
+                      <td>{adie.location_state}</td>
+                      <td>{transplant}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </Table>
         </div>
       </div>
     )
-
   }
 }
 

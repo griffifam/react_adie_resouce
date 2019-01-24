@@ -7,10 +7,14 @@
 }
 
 .allAdies {
-  margin: 0px;
+  /* margin: 0px;
   width: 1600px;
   padding-bottom: 5vh;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
+}
+
+.adietable {
+  margin-top: 3vh;
 }

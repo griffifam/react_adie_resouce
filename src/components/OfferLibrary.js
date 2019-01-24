@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Offer from './Offer';
 
+import { Table, Button } from 'reactstrap';
+
 import './OfferLibrary.css';
 
 class OfferLibrary extends Component {
@@ -66,9 +68,47 @@ class OfferLibrary extends Component {
         <button onClick={() => this.props.showGraph("offers", "negotiations")}>Negotiations</button>
         <button onClick={() => this.props.showGraph("offers", "adie_id")}># of Adies</button>
         <div className="library">
-          <ol className="allOffers">
-            {allOffers}
-          </ol>
+          <Table className="offertable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Adie ID</th>
+                <th>Company ID</th>
+                <th>Negotiation?</th>
+                <th>Base Salary</th>
+                <th>Signing Bonus</th>
+                <th>Relocation</th>
+                <th>Health</th>
+                <th>Retirement</th>
+                <th>Vacation Days</th>
+                <th>Hire Type</th>
+                <th>Stocks</th>
+              </tr>
+            </thead>
+            <tbody>
+                {this.state.offers.map((offer, i) => {
+                  let age = offer.age;
+                  let negotiation = offer.negotiations ? "Yes" : "No";
+
+                  return (
+                    <tr>
+                      <th scope="row">{i}</th>
+                      <td>{offer.adie_id}</td>
+                      <td>{offer.company_id}</td>
+                      <td>{negotiation}</td>
+                      <td>{offer.base_amount}</td>
+                      <td>{offer.signing_bonus}</td>
+                      <td>{offer.relocation_package}</td>
+                      <td>{offer.health_insurance}</td>
+                      <td>{offer.retirement}</td>
+                      <td>{offer.vacation_days}</td>
+                      <td>{offer.hire_type}</td>
+                      <td>{offer.stocks}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </Table>
         </div>
       </div>
     )

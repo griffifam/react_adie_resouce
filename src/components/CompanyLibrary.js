@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Company from './Company';
 
+import { Table, Button } from 'reactstrap';
+
 import './CompanyLibrary.css';
 
 class CompanyLibrary extends Component {
@@ -59,9 +61,39 @@ class CompanyLibrary extends Component {
         <button onClick={() => this.props.showGraph("companies", "location")}>Location</button>
         <button onClick={() => this.props.showGraph("companies", "industry")}>Industry</button>
         <div className="library">
-          <ol className="allCompanies">
-            {allCompanies}
-          </ol>
+          <Table className="adietable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Company Size</th>
+                <th>Org/Team Size</th>
+                <th>Any Adies Present</th>
+                <th>Current City</th>
+                <th>Current State</th>
+                <th>Company Industry</th>
+                <th>Microaggressions</th>
+              </tr>
+            </thead>
+            <tbody>
+                {this.state.companies.map((company, i) => {
+                  let age = company.age;
+                  let presence = company.adies_present ? "Yes" : "No";
+
+                  return (
+                    <tr>
+                      <th scope="row">{i}</th>
+                      <td>{company.company_size}</td>
+                      <td>{company.org_size}</td>
+                      <td>{presence}</td>
+                      <td>{company.location_city}</td>
+                      <td>{company.location_state}</td>
+                      <td>{company.industry}</td>
+                      <td>{company.level_of_microaggressions}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </Table>
         </div>
       </div>
     );

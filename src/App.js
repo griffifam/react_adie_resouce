@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
+import axios from 'axios';
+import { Navbar } from 'reactstrap';
 
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import "bootstrap-css-only/css/bootstrap.min.css";
-import "mdbreact/dist/css/mdb.css";
 
 import './App.css';
 
@@ -418,23 +417,31 @@ class App extends Component {
     }
   }
 
-  getNewFormData = (adie, company, offer) => {
+  getNewFormData = (adie) => {
     console.log("new adie is", adie);
-    console.log("new company is", company);
-    console.log("new offer is", offer)
-    let allAdies = this.state.adies;
-    allAdies = allAdies.push(adie);
+    console.log("location state is", adie.location_state);
+    console.log("transplant?", adie.transplant);
 
-    let allCompanies = this.state.companies;
-    allCompanies = allCompanies.push(company);
+    axios.post('http://localhost:8000/adielist/new', {
+      "age": adie.age,
+      "gender": `${adie.gender}`,
+      "orientation": `${adie.orientation}`,
+      "race": `${adie.race}`,
+      "location_city": `${adie.location_city}`,
+      "location_state": `${adie.location_state}`,
+      "transplant": adie.transplant,
+    })
+    .then(function (response) {
+      console.log("what is my response", response);
+    })
+    .catch(function (error) {
+      console.log("did I get an error", error);
+    });
+  }
 
-    let allOffers = this.state.offers;
-    allOffers = allOffers.push(offer);
-
+  removePie = () => {
     this.setState({
-      adies: allAdies,
-      companies: allCompanies,
-      offers: allOffers,
+      pieDisplay: false,
     })
   }
 
@@ -445,7 +452,7 @@ class App extends Component {
     return (
 
       <div className="App">
-        <header className="App-header">
+        <Navbar color="secondary" className="text-primary">
           <div className="nav-item1">
             <Link to="/adies" className="adie">Adie Library</Link>
           </div>
@@ -458,9 +465,9 @@ class App extends Component {
           <div className="nav-item4">
             <Link to="/new" className="newform">New Data Form</Link>
           </div>
-        </header>
-
+        </Navbar>
         <div className="components-body">
+          <Route exact path="/" />
           <Route exact path="/adies"
             render={ (props) => <AdieLibrary {...props}
             adieCountCallback={this.changeMessage}
@@ -480,7 +487,7 @@ class App extends Component {
             showGraph={this.showGraph} /> }
             />
           <Route exact path="/new"
-            render={ (props) => <NewForm {...props} newDataCallback={this.getNewFormData} /> }
+            render={ (props) => <NewForm {...props} newDataCallback={this.getNewFormData} removepie={this.removePie}/> }
             />
         </div>
         <div className="pie" style={{display: this.state.pieDisplay ? 'block' : 'none' }}>

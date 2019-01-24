@@ -39,7 +39,6 @@ class PieChart extends React.Component {
 
     console.log("this is label", label);
 
-
     return(
       <svg height={height} width={width}>
       <g transform={`translate(${width / 2},${height / 2})`}>
@@ -52,7 +51,7 @@ class PieChart extends React.Component {
 
 
 PieChart.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 }
 
 export default PieChart;

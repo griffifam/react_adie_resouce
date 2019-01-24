@@ -1,36 +1,40 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 20vmin;
+  /* background-image: url("https://lizmrush.com/content/images/2014/Aug/CascadiaRuby2014-002.jpg");  */
+  /* background-repeat: no-repeat;
+  background-position: center; */
+  background-color: black;
 }
 
 .App-header {
-  background-color: green;
+  /* background-color: green;
   min-height: 10vh;
   font-size: calc(10px + 2vmin);
   color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: center; */
 }
 
 .App-link {
-  color: #61dafb;
+  /* color: #61dafb; */
 }
 
 @keyframes App-logo-spin {
-  from {
+  /* from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
-  }
+  } */
 }
 
 .pie {
   display: none;
+}
+
+.components-body {
+  display: flex;
+  flex-direction: column;
 }
