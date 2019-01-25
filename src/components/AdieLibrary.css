@@ -18,3 +18,13 @@
 .adietable {
   margin-top: 3vh;
 }
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.this:hover {
+  background-color: grey;
+}

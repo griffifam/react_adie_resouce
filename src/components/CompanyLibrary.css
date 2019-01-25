@@ -14,3 +14,13 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.this:hover {
+  background-color: grey;
+}

@@ -1,9 +1,10 @@
 .App {
+  height: 1000vh;
   text-align: center;
-  /* background-image: url("https://lizmrush.com/content/images/2014/Aug/CascadiaRuby2014-002.jpg");  */
-  /* background-repeat: no-repeat;
-  background-position: center; */
-  background-color: black;
+  /* background-image: url("https://lizmrush.com/content/images/2014/Aug/CascadiaRuby2014-002.jpg"); */
+  /* background-repeat: no-repeat; */
+  background-position: center;
+  /* background-color: black; */
 }
 
 .App-header {

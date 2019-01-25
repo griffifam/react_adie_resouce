@@ -57,9 +57,11 @@ class CompanyLibrary extends Component {
 
     return (
       <div className="companyLibrary">
-        <button onClick={() => this.props.showGraph("companies", "orgSize")}>Oganization Size</button>
-        <button onClick={() => this.props.showGraph("companies", "location")}>Location</button>
-        <button onClick={() => this.props.showGraph("companies", "industry")}>Industry</button>
+        <div className="buttons">
+        <Button outline color="primary" onClick={() => this.props.showGraph("companies", "orgSize")}>Oganization Size</Button>
+        <Button outline color="primary" onClick={() => this.props.showGraph("companies", "location")}>Location</Button>
+        <Button outline color="primary" onClick={() => this.props.showGraph("companies", "industry")}>Industry</Button>
+        </div>
         <div className="library">
           <Table className="adietable">
             <thead>
@@ -80,7 +82,7 @@ class CompanyLibrary extends Component {
                   let presence = company.adies_present ? "Yes" : "No";
 
                   return (
-                    <tr>
+                    <tr className="this">
                       <th scope="row">{i}</th>
                       <td>{company.company_size}</td>
                       <td>{company.org_size}</td>

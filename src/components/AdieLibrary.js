@@ -52,6 +52,7 @@ class AdieLibrary extends Component {
 
     return (
       <div className="adieLibrary">
+        <div className="buttons">
         <Button outline color="primary" onClick={() => this.props.showGraph("adies", "age")}>
           Age
         </Button>
@@ -64,6 +65,7 @@ class AdieLibrary extends Component {
         <Button outline color="primary" onClick={() => this.props.showGraph("adies", "orientation")}>
           Orientation
         </Button>
+        </div>
         <div className="library">
           <Table className="adietable">
             <thead>
@@ -84,7 +86,7 @@ class AdieLibrary extends Component {
                   let transplant = adie.transplant ? "Yes" : "No";
 
                   return (
-                    <tr>
+                    <tr className="this">
                       <th scope="row">{i}</th>
                       <td>{age}</td>
                       <td>{adie.gender}</td>

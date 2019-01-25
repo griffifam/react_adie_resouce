@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Redirect } from 'react-router-dom';
 
-// import { MDBContainer, MDBSelect, MDBSelectInput, MDBSelectOptions, MDBSelectOption, MDBRow, MDBCol, MDBBtn, MDBCard, MDBInput } from 'mdbreact';
 
 class NewForm extends Component {
   constructor(props) {
@@ -320,7 +318,7 @@ class NewForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-        <h3>Adie Data</h3>
+        <h3 className="title">Adie Data</h3>
         <label> Adie Age:
           <input name="age" type="number" placeholder="21" onChange={this.onAgeChange}
             />
@@ -382,7 +380,7 @@ class NewForm extends Component {
             />
         </label><br></br>
 
-        <h3>Company Data</h3>
+        <h3 className="title">Company Data</h3>
         <label>What is the size of the company:
           <input name="company_size" type="number" placeholder="1,250" onChange={this.onCompanySizeChange}
             />
@@ -422,7 +420,7 @@ class NewForm extends Component {
           <input name="this.state.newCompanyData.level_of_microaggressions" type="text" placeholder="Gaslighting" value={this.state.newCompanyData['level_of_microaggressions']} onChange={this.onMicroChange} />
         </label><br></br>
 
-        <h3>Offer Data</h3>
+        <h3 className="title">Offer Data</h3>
         <label>Hire Type (internal/external)?:
           Internal
           <input type="radio" name="hire_type" onChange={this.onHireChange} value="internal"
